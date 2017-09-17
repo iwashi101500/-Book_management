@@ -4,17 +4,20 @@
         <div class="right" ng-click="addlink()"><ons-icon icon="fa-plus" size="170%" class="addbutton"></ons-icon></div>
     </ons-toolbar>
     <ons-list>
-        <ons-list-item ng-repeat="data in purchaselist">
-            <ons-carousel fullscreen swipeable auto-scroll>
-                <ons-carousel-item>
-                    {{data.name}}
-                </ons-carousel-item>
-                <ons-carousel-item>
-                    <ons-button>購入完了</ons-button>
-                    <ons-button>編集</ons-button>
-                    <ons-button ng-click="delete($index)" class="button">削除</ons-button>
-                </ons-carousel-item>
-            </ons-carousel>
-        </ons-list-item>
+        <div ng-repeat="date in datelist">
+            <ons-list-header>{{date.year}}年{{date.month}}月</ons-list-header>
+            <ons-list-item ng-repeat="data in purchaselist | filter:{year:date.year,month:date.month}">
+                <ons-carousel fullscreen swipeable auto-scroll>
+                    <ons-carousel-item>
+                        {{data.name}}{{data.year}}/{{data.month}}
+                    </ons-carousel-item>
+                    <ons-carousel-item>
+                        <ons-button>購入完了</ons-button>
+                        <ons-button>編集</ons-button>
+                        <ons-button ng-click="delete($index)" class="button">削除</ons-button>
+                    </ons-carousel-item>
+                </ons-carousel>
+            </ons-list-item>
+        </div>
     </ons-list>
 </ons-page>
