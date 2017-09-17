@@ -1,0 +1,25 @@
+<ons-page ng-controller="PurchaseCtrl">
+    <ons-toolbar>
+        <div class="center">購入予定書籍追加</div>
+        <div class="left"><ons-back-button>戻る</ons-back-button></div>
+    </ons-toolbar>
+    <ons-list>
+        <ons-list-header>書籍名</ons-list-header>
+        <ons-list-item>
+            <ons-input type="text" ng-model="name"></ons-input>
+        </ons-list-item>
+        <ons-list-header>巻数</ons-list-header>
+        <ons-list-item>
+            <ons-input type="number" ng-model="turns"></ons-input>
+        </ons-list-item>
+        <ons-list-header>発売日</ons-list-header>
+        <ons-list-item>
+            <ons-input type="date" ng-model="date"></ons-input>
+        </ons-list-item>
+        <ons-list-item>
+            <ons-checkbox ng-model="notification"></ons-checkbox>　発売日に通知を受け取る
+        </ons-list-item>
+    </ons-list>
+    
+    <ons-button modifier="large" ng-click="add_item()">登録</ons-button>
+</ons-page>

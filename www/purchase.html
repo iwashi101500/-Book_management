@@ -1,0 +1,20 @@
+<ons-page ng-controller="PurchaseCtrl">
+    <ons-toolbar>
+        <div class="center">購入予定</div>
+        <div class="right" ng-click="addlink()"><ons-icon icon="fa-plus" size="170%" class="addbutton"></ons-icon></div>
+    </ons-toolbar>
+    <ons-list>
+        <ons-list-item ng-repeat="data in purchaselist">
+            <ons-carousel fullscreen swipeable auto-scroll>
+                <ons-carousel-item>
+                    {{data.name}}
+                </ons-carousel-item>
+                <ons-carousel-item>
+                    <ons-button>購入完了</ons-button>
+                    <ons-button>編集</ons-button>
+                    <ons-button ng-click="delete($index)" modifier="cta">削除</ons-button>
+                </ons-carousel-item>
+            </ons-carousel>
+        </ons-list-item>
+    </ons-list>
+</ons-page>

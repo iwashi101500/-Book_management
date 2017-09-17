@@ -1,0 +1,19 @@
+/*共通*/
+.addbutton{
+    color: orange;
+    margin-right: 10%;
+}
+.addbutton:active{
+    color: #8C5702;
+}
+
+:checked + .tabbar__button{
+    color:rgba(255, 140, 0, 0.81);
+}
+
+.back-button__icon{
+    fill:#FF8C00;
+}
+.back-button{
+    color:#FF8C00;
+}
