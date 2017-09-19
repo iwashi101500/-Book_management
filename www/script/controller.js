@@ -48,38 +48,42 @@ app.controller("PurchaseCtrl",function($scope){
     //リストへ追加
     $scope.add_item = function(){
         var date = new Date($scope.date);
-        //購入予定リスト
-        PurchaseList.push({
-            name: $scope.name,
-            turns: $scope.turns,
-            date: $scope.date,
-            year: date.getFullYear(),
-            month: date.getMonth()+1,
-            notification: $scope.notification
-        });
-        
-        //被りがないかチェック
-        var checkdate=function(){
-            var flag=true;
-            for(i in DateList){
-                if((DateList[i].year==date.getFullYear()) && (DateList[i].month==date.getMonth()+1)){
-                    flag=false;
+        if($scope.date && $scope.name){
+            //購入予定リスト
+            PurchaseList.push({
+                name: $scope.name,
+                turns: $scope.turns,
+                date: $scope.date,
+                year: date.getFullYear(),
+                month: date.getMonth()+1,
+                notification: $scope.notification
+            });
+            
+            //被りがないかチェック
+            var checkdate=function(){
+                var flag=true;
+                for(i in DateList){
+                    if((DateList[i].year==date.getFullYear()) && (DateList[i].month==date.getMonth()+1)){
+                        flag=false;
+                    }
                 }
-            }
-            if(flag==true){
-                DateList.push({
-                    year: date.getFullYear(),
-                    month: date.getMonth()+1
-                });                
-            }
-        };
-        checkdate();
-        MainNav.on("prepop",function(){
-            localStorage.setItem('purchaselist',JSON.stringify(PurchaseList));
-            localStorage.setItem('datelist',JSON.stringify(DateList));
-            $scope.purchaselist = PurchaseList;
-            $scope.datelist = DateList;
-        });
-        MainNav.popPage({refresh:true});
+                if(flag==true){
+                    DateList.push({
+                        year: date.getFullYear(),
+                        month: date.getMonth()+1
+                    });                
+                }
+            };
+            checkdate();
+            MainNav.on("prepop",function(){
+                localStorage.setItem('purchaselist',JSON.stringify(PurchaseList));
+                localStorage.setItem('datelist',JSON.stringify(DateList));
+                $scope.purchaselist = PurchaseList;
+                $scope.datelist = DateList;
+            });
+            MainNav.popPage({refresh:true});
+        }else{
+            alert("未入力項目があります。")
+        }
     };
 });
